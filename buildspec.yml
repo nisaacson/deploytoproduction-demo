@@ -11,3 +11,11 @@ phases:
   build:
     commands:
       - bin/unit-test.sh
+  post_build:
+    commands:
+      - !Sub |
+        PAYLOAD="{\"id\": \"$CODEBUILD_BUILD_ID\", \"region\": \"$AWS_REGION\"}"
+        echo $PAYLOAD
+        echo
+        curl -XPOST --verbose --data "$PAYLOAD" "https://api.deploytoproduction.com/status"
+
