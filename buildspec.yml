@@ -1,0 +1,13 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo "install command 1 here"
+      - !Sub |
+        echo "line 1 install command"
+        echo "line 2 install command"
+
+  build:
+    commands:
+      - bin/unit-test.sh
